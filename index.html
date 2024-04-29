@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Accessibility Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .tool-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .tool img {
+            width: 100px;
+            height: auto;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Browser Extensions</a></li>
+                <li><a href="#">Stand-alone API/Testing</a></li>
+                <li><a href="#">Engine Subscription API</a></li>
+                <li><a href="#">AIM Report</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </nav>
+        <h1>Compare Accessibility Tools</h1>
+    </header>
+    <main>
+        <section>
+            <input type="text" id="urlInput" placeholder="Enter website URL">
+            <button id="checkButton">Check it</button>
+        </section>
+        <section>
+            <h2>List of Accessibility Testing Tools</h2>
+            <div class="tool-list">
+                <div class="tool">
+                    <img src="wave-logo.png" alt="Wave Logo">
+                    <h3>Wave</h3>
+                </div>
+                <div class="tool">
+                    <img src="achecker-logo.png" alt="Achecker Logo">
+                    <h3>Achecker</h3>
+                </div>
+                <div class="tool">
+                    <img src="lighthouse-logo.png" alt="Lighthouse Logo">
+                    <h3>Lighthouse</h3>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Comparison Results</h2>
+            <table id="comparisonTable">
+                <thead>
+                    <tr>
+                        <th>Accessible Check</th>
+                        <th>Wave</th>
+                        <th>Achecker</th>
+                        <th>Lighthouse</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Results will be dynamically added here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <ul>
+            <li><a href="https://www.unt.edu/index.html">Contact Us</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Terms of Use</a></li>
+        </ul>
+    </footer>
+    <script>
+        document.getElementById('checkButton').addEventListener('click', function() {
+            const url = document.getElementById('urlInput').value;
+            if (url) {
+                // Simulate fetching data from an API
+                const results = {
+                    "Wave": 5,
+                    "Achecker": 3,
+                    "Lighthouse": 7
+                };
+
+                // Clear existing table rows
+                const tbody = document.getElementById('comparisonTable').querySelector('tbody');
+                tbody.innerHTML = '';
+
+                // Add new rows to the table
+                for (const [tool, issues] of Object.entries(results)) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${tool}</td>
+                        <td>${issues}</td>
+                        <td><button>Compare</button></td>
+                    `;
+                    tbody.appendChild(row);
+                }
+            } else {
+                alert('Please enter a URL.');
+            }
+        });
+    </script>
+</body>
+</html>
